@@ -7,3 +7,6 @@
   - [GCC + OpenOCD](./installation/gcc_openocd.md)
   - [St-Link](./installation/stlink.md)
   - [串口](./installation/serial.md)
+- [Basic](./basic.md)
+   - [Setup](./basic/Setup.md)
+   - [Blink](./basic/Blink.md)

@@ -1,10 +1,12 @@
+env:
+  - MDBOOK_DOWNLOAD_PATH="https://github.com/rust-lang-nursery/mdBook/releases/download/v0.2.1/mdbook-v0.2.1-x86_64-unknown-linux-gnu.tar.gz"
 sudo: false
 branches:
   only:
   - master
 before_script:
   - mkdir -p /tmp/mdbook
-  - wget -qO- https://github.com/rust-lang-nursery/mdBook/releases/download/v0.1.5/mdbook-v0.1.5-x86_64-unknown-linux-gnu.tar.gz | tar -xvz -C /tmp/mdbook
+  - wget -qO- $MDBOOK_DOWNLOAD_PATH | tar -xvz -C /tmp/mdbook
   - export PATH="$PATH:/tmp/mdbook"
 script:
   - mdbook build

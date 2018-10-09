@@ -1,22 +1,10 @@
 sudo: false
-language: rust
-cache: cargo
-rust:
-  - stable
 branches:
   only:
   - master
 before_script:
-  - |
-    LATEST=$(cargo search mdbook | grep "^mdbook =" | cut -d '"' -f 2)
-    INSTALLED=$(cargo install --list | grep "^mdbook " | cut -d v -f 2 | tr -d :)
-    if [ "$INSTALLED" != "$LATEST" ]; then
-      if [ "$INSTALLED" != "" ]; then
-        echo "mdbook '$INSTALLED' is already installed"
-      fi
-      echo "Installing mdbook '$LATEST'"
-      cargo install mdbook --force --vers "$LATEST"
-    fi
+  - mkdir -p /tmp/mdbook
+  - wget -qO- https://github.com/rust-lang-nursery/mdBook/releases/download/v0.1.5/mdbook-v0.1.5-x86_64-unknown-linux-gnu.tar.gz | tar -xvz -C /tmp/mdbook
+  - export PATH="$PATH:/tmp/mdbook"
 script:
   - mdbook build
-
